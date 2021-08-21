@@ -1,7 +1,7 @@
 {
   "name": "skill-mapping",
   "version": "1.0.0",
-  "main": "lib/main.js",
+  "main": "dist/main.js",
   "author": "William Hsiao",
   "license": "MIT",
   "scripts": {

@@ -1,0 +1,22 @@
+services:
+  server:
+    build:
+      context: ../../
+      dockerfile: docker/local/Dockerfile.server
+    ports:
+      - 3001:3001
+    volumes:
+      - /app/dist
+      - /app/node_modules
+      - ../../:/app:cached
+
+  client:
+    build:
+      context: ../../
+      dockerfile: docker/local/Dockerfile.client
+    ports:
+      - 3000:3000
+    volumes:
+      - /app/public/dist
+      - /app/node_modules
+      - ../../:/app:cached
