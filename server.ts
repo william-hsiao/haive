@@ -2,6 +2,7 @@ import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 
 import routes from './api/index';
+import { namespaceRoutes } from './api/helpers';
 
 const init = async () => {
   const server = Hapi.server({
@@ -11,7 +12,7 @@ const init = async () => {
     },
   });
 
-  server.route(routes);
+  server.route(namespaceRoutes('/api', routes));
 
   // Serve FE files
   await server.register(Inert);
@@ -22,8 +23,25 @@ const init = async () => {
       directory: {
         path: 'client/public',
         index: ['index.html'],
+        redirectToSlash: true,
       },
     },
+  });
+
+  server.ext('onPreResponse', (request, h) => {
+    const response = request.response;
+    if (!('isBoom' in response) || !response.isBoom) {
+      return h.continue;
+    }
+
+    if (
+      !request.path.startsWith('/api') &&
+      response.output.statusCode === 404
+    ) {
+      return h.file('client/public/index.html');
+    }
+
+    return h.continue;
   });
 
   await server.start();

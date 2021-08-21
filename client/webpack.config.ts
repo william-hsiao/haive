@@ -21,10 +21,14 @@ const config: Configuration = {
   mode: 'development',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   devtool: 'inline-source-map',
   devServer: {
     port: 3000,
+    historyApiFallback: true,
   },
 };
 
