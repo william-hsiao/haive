@@ -2,7 +2,7 @@ import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 
 import './api/mongooseClient';
-import routes from './api/index';
+import routes from './api/routes';
 import { namespaceRoutes } from './api/helpers';
 
 const init = async () => {

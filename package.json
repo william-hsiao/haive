@@ -19,7 +19,6 @@
     "@types/faker": "^5.5.8",
     "@types/hapi__hapi": "^20.0.9",
     "@types/hapi__inert": "^5.2.3",
-    "@types/mongoose": "^5.11.97",
     "@types/node": "^16.7.1",
     "faker": "^5.5.3",
     "nodemon": "^2.0.12",
