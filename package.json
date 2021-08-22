@@ -5,18 +5,23 @@
   "author": "William Hsiao",
   "license": "MIT",
   "scripts": {
-    "dev:tsc": "tsc --watch -p .",
+    "tsc": "tsc -p .",
+    "dev:tsc": "tsc --watch --preserveWatchOutput -p .",
     "dev:serve": "nodemon -e js -w dist dist/server.js",
     "dev": "run-p dev:*"
   },
   "dependencies": {
     "@hapi/hapi": "^20.1.5",
-    "@hapi/inert": "^6.0.3"
+    "@hapi/inert": "^6.0.3",
+    "mongoose": "^5.13.7"
   },
   "devDependencies": {
+    "@types/faker": "^5.5.8",
     "@types/hapi__hapi": "^20.0.9",
     "@types/hapi__inert": "^5.2.3",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^16.7.1",
+    "faker": "^5.5.3",
     "nodemon": "^2.0.12",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.3.5"

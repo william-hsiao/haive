@@ -1,6 +1,7 @@
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 
+import './api/mongooseClient';
 import routes from './api/index';
 import { namespaceRoutes } from './api/helpers';
 

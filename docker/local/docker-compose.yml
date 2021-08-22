@@ -1,4 +1,14 @@
 services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: skill-map
+
   server:
     build:
       context: ../../
@@ -6,9 +16,18 @@ services:
     ports:
       - 3001:3001
     volumes:
-      - /app/dist
-      - /app/node_modules
       - ../../:/app:cached
+    env_file:
+      - server.env
+
+  server-seed:
+    build:
+      context: ../../
+      dockerfile: docker/local/Dockerfile.server-seed
+    volumes:
+      - ../../:/app:cached
+    env_file:
+      - server.env
 
   client:
     build:
@@ -17,6 +36,4 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - /app/public/dist
-      - /app/node_modules
       - ../../:/app:cached
