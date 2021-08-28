@@ -2,17 +2,38 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    primary: string;
-    primaryLight: string;
-    primaryDark: string;
+    colours: {
+      white: string;
+      grey10: string;
+      grey20: string;
+      grey30: string;
+      grey40: string;
+      grey50: string;
+      grey60: string;
+      grey70: string;
+      grey80: string;
+      grey90: string;
+      black: string;
 
-    text: string;
-    primaryText: string;
-    primaryLightText: string;
+      primary10: string;
+      primary20: string;
+      primary30: string;
+      primary40: string;
+      primary50: string;
+      primary60: string;
+      primary70: string;
+      primary80: string;
+      primary90: string;
+
+      text: string;
+      textLight: string;
+      textDark: string;
+    };
 
     fontSize: string;
 
     sidebarWidth: string;
     headerHeight: string;
+    mainPadding: string;
   }
 }

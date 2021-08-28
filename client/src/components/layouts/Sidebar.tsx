@@ -6,9 +6,9 @@ import { routePaths } from '@/routePaths';
 import { useGlobal } from '@/context/GlobalContext';
 
 const Container = styled.nav`
-  background-color: ${(props) => props.theme.primaryDark};
+  background-color: ${(props) => props.theme.colours.primary60};
   bottom: 0;
-  color: ${(props) => props.theme.primaryText};
+  color: ${(props) => props.theme.colours.textLight};
   position: fixed;
   top: 0;
   width: ${(props) => props.theme.sidebarWidth};
@@ -30,31 +30,31 @@ const DepartmentLinksGroup = styled.div`
   margin-bottom: 0.5rem;
 `;
 const DepartmentLink = styled(Link)`
-  background-color: ${(props) => props.theme.primary};
-  border: 1px solid ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.colours.primary50};
+  border: 1px solid ${(props) => props.theme.colours.primary50};
   box-sizing: border-box;
   cursor: pointer;
   display: block;
   padding: 1.5rem 2rem;
   transition: box-shadow 0.2s ease;
 
-  color: ${(props) => props.theme.primaryText};
+  color: ${(props) => props.theme.colours.textLight};
   font-weight: 800;
   text-decoration: none;
 
   &:hover {
-    box-shadow: 0 0 5px ${(props) => props.theme.primaryDark} inset;
-    border-color: ${(props) => props.theme.primaryDark};
+    box-shadow: 0 0 5px ${(props) => props.theme.colours.primary60} inset;
+    border-color: ${(props) => props.theme.colours.primary60};
   }
 `;
 const DepartmentSubLink = styled(DepartmentLink)`
-  background-color: ${(props) => props.theme.primaryLight};
-  border-color: ${(props) => props.theme.primaryLight};
-  color: ${(props) => props.theme.primaryLightText};
+  background-color: ${(props) => props.theme.colours.primary40};
+  border-color: ${(props) => props.theme.colours.primary40};
+  color: ${(props) => props.theme.colours.textDark};
   padding: 1rem 2rem 1rem 3rem;
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid ${(props) => props.theme.primary};
+    border-bottom: 1px solid ${(props) => props.theme.colours.primary50};
   }
 `;
 
@@ -63,7 +63,7 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const { departments, selectedDepartmentId } = useGlobal();
+  const { departments } = useGlobal();
 
   return (
     <Container className={className}>
