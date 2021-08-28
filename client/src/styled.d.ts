@@ -8,6 +8,7 @@ declare module 'styled-components' {
 
     text: string;
     primaryText: string;
+    primaryLightText: string;
 
     fontSize: string;
 

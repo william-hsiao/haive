@@ -5,6 +5,7 @@ export const styledComponentTheme = {
 
   text: '#2e444e',
   primaryText: '#ffffff',
+  primaryLightText: '#000000',
 
   fontSize: '14px',
 

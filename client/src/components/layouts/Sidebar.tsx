@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { routePaths } from '@/routePaths';
+import { useGlobal } from '@/context/GlobalContext';
 
 const Container = styled.nav`
-  background-color: ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.primaryDark};
   bottom: 0;
   color: ${(props) => props.theme.primaryText};
   position: fixed;
@@ -14,13 +15,24 @@ const Container = styled.nav`
 `;
 
 const LogoLink = styled(Link)`
-  display: block;
-  margin-bottom: 2rem;
-  padding: 1.5rem 0;
+  align-items: center;
+  display: flex;
+  height: ${(props) => props.theme.headerHeight};
+  justify-content: center;
 `;
 
-const NavLink = styled(Link)`
-  border-bottom: 1px solid ${(props) => props.theme.primaryDark};
+const DepartmentLinksContainer = styled.div`
+  &:not(:last-child) {
+    overflow-y: auto;
+  }
+`;
+const DepartmentLinksGroup = styled.div`
+  margin-bottom: 0.5rem;
+`;
+const DepartmentLink = styled(Link)`
+  background-color: ${(props) => props.theme.primary};
+  border: 1px solid ${(props) => props.theme.primary};
+  box-sizing: border-box;
   cursor: pointer;
   display: block;
   padding: 1.5rem 2rem;
@@ -30,12 +42,19 @@ const NavLink = styled(Link)`
   font-weight: 800;
   text-decoration: none;
 
-  &:not(:last-of-type) {
-    border-top: 1px solid ${(props) => props.theme.primaryDark};
-  }
-
   &:hover {
-    box-shadow: 0 0 5px ${(prop) => prop.theme.primaryDark} inset;
+    box-shadow: 0 0 5px ${(props) => props.theme.primaryDark} inset;
+    border-color: ${(props) => props.theme.primaryDark};
+  }
+`;
+const DepartmentSubLink = styled(DepartmentLink)`
+  background-color: ${(props) => props.theme.primaryLight};
+  border-color: ${(props) => props.theme.primaryLight};
+  color: ${(props) => props.theme.primaryLightText};
+  padding: 1rem 2rem 1rem 3rem;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid ${(props) => props.theme.primary};
   }
 `;
 
@@ -44,12 +63,25 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ className }) => {
+  const { departments, selectedDepartmentId } = useGlobal();
+
   return (
     <Container className={className}>
       <LogoLink to={routePaths.root}>Logo Placeholder</LogoLink>
 
-      <NavLink to={routePaths.matrix}>Skills Matrix</NavLink>
-      <NavLink to={routePaths.teams}>Teams</NavLink>
+      <DepartmentLinksContainer>
+        {departments.map((dpt, idx) => (
+          <DepartmentLinksGroup key={idx}>
+            <DepartmentLink to={`/${dpt._id}`}>{dpt.name}</DepartmentLink>
+            <DepartmentSubLink to={`/${dpt._id}${routePaths.matrix}`}>
+              Skills Matrix
+            </DepartmentSubLink>
+            <DepartmentSubLink to={`/${dpt._id}${routePaths.teams}`}>
+              Teams
+            </DepartmentSubLink>
+          </DepartmentLinksGroup>
+        ))}
+      </DepartmentLinksContainer>
     </Container>
   );
 };

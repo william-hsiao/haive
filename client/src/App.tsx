@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { styledComponentTheme } from '@/theme';
 import { routePaths } from '@/routePaths';
+import { GlobalProvider, useGlobal } from '@/context/GlobalContext';
 import SidebarLayout from '@/components/layouts/Sidebar';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
     color: ${(props) => props.theme.text};
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: ${(props) => props.theme.fontSize};
     margin: 0;
     padding: 0;
@@ -36,23 +38,44 @@ const Header = styled.div`
 
 const App: FC = () => {
   return (
-    <ThemeProvider theme={styledComponentTheme}>
-      <GlobalStyle />
+    <Switch>
+      <Route path={routePaths.login}>Login</Route>
 
-      <Router>
+      <Route path={routePaths.root}>
         <Sidebar />
         <Header />
 
         <Main>
           <Switch>
-            <Route path={routePaths.matrix}>Matrix</Route>
-            <Route path={routePaths.teams}>Teams</Route>
+            <Route path={`${routePaths.departmentId}${routePaths.matrix}`}>
+              Matrix
+            </Route>
+            <Route path={`${routePaths.departmentId}${routePaths.teams}`}>
+              Teams
+            </Route>
+            <Route path={`${routePaths.departmentId}${routePaths.root}`}>
+              Department Home
+            </Route>
+
             <Route path={routePaths.root}>Home</Route>
           </Switch>
         </Main>
-      </Router>
-    </ThemeProvider>
+      </Route>
+    </Switch>
   );
 };
 
-export default App;
+const AppWrapper: FC = () => {
+  return (
+    <Router>
+      <GlobalProvider>
+        <ThemeProvider theme={styledComponentTheme}>
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
+      </GlobalProvider>
+    </Router>
+  );
+};
+
+export default AppWrapper;

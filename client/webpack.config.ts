@@ -1,5 +1,5 @@
 import path from 'path';
-import { Configuration } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import 'webpack-dev-server';
 
 const config: Configuration = {
@@ -30,6 +30,7 @@ const config: Configuration = {
     port: 3000,
     historyApiFallback: true,
   },
+  plugins: [new webpack.EnvironmentPlugin(['API_ENDPOINT'])],
 };
 
 export default config;
