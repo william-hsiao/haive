@@ -15,10 +15,17 @@ export type Department = {
   skillSet: SkillSetLabels;
 };
 export type MemberSkill = {
+  _id: string;
   user: {
     name: string;
   };
   skills: SkillSet;
+};
+export type Team = {
+  _id: string;
+  name: string;
+  members: MemberSkill[];
+  skills: SkillSetLabels;
 };
 
 const client = axios.create({
@@ -52,4 +59,13 @@ export const getDepartmentMemberSkills = ({
   departmentId,
 }: IGetDepartmentMemberSkills): Promise<MemberSkill[]> => {
   return request({ method: 'GET', url: `/department/${departmentId}/members` });
+};
+
+interface IGetDepartmentTeams {
+  departmentId: string;
+}
+export const getDepartmentTeams = ({
+  departmentId,
+}: IGetDepartmentTeams): Promise<Team[]> => {
+  return request({ method: 'GET', url: `/department/${departmentId}/teams` });
 };

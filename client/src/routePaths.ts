@@ -1,5 +1,6 @@
 export interface RouteParams {
-  departmentId: string;
+  departmentId?: string;
+  teamId?: string;
 }
 
 export const routePaths = {
@@ -8,4 +9,5 @@ export const routePaths = {
   departmentId: '/:departmentId',
   matrix: '/matrix',
   teams: '/teams',
+  teamId: '/:teamId',
 };

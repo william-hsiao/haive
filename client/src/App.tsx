@@ -13,6 +13,8 @@ import { GlobalProvider } from '@/context/GlobalContext';
 import SidebarLayout from '@/components/layouts/Sidebar';
 
 import MatrixPage from '@/pages/Matrix';
+import TeamsOverviewPage from './pages/teams/Overview';
+import TeamsPage from './pages/teams';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -54,10 +56,12 @@ const DepartmentRouter: FC = () => {
       <Route exact path={path}>
         Department Home
       </Route>
-      <Route path={`${path}${routePaths.matrix}`}>
+      <Route path={[path, routePaths.matrix].join('')}>
         <MatrixPage />
       </Route>
-      <Route path={`${path}${routePaths.teams}`}>Teams</Route>
+      <Route path={[path, routePaths.teams].join('')}>
+        <TeamsPage />
+      </Route>
     </Switch>
   );
 };

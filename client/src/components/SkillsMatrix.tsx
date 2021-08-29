@@ -128,20 +128,20 @@ const SkillsMatrix: FC<ISkillsMatrix> = ({
         <CellWrapper>
           <Cell role="th">Member</Cell>
         </CellWrapper>
-        {skills.map((skill) => (
-          <CellWrapper>
+        {skills.map((skill, index) => (
+          <CellWrapper key={index}>
             <Cell role="th">{skill}</Cell>
           </CellWrapper>
         ))}
       </div>
 
-      {memberSkills.map((member) => (
-        <div role="row">
+      {memberSkills.map((member, index) => (
+        <div role="row" key={index}>
           <CellWrapper>
             <Cell role="td">{member.user.name}</Cell>
           </CellWrapper>
-          {skills.map((skill) => (
-            <CellWrapper>
+          {skills.map((skill, idx) => (
+            <CellWrapper key={idx}>
               <SkillCell role="td" level={member.skills[skill]}>
                 {member.skills[skill]}
               </SkillCell>
