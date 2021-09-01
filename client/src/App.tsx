@@ -13,14 +13,13 @@ import { GlobalProvider } from '@/context/GlobalContext';
 import SidebarLayout from '@/components/layouts/Sidebar';
 
 import MatrixPage from '@/pages/Matrix';
-import TeamsOverviewPage from './pages/teams/Overview';
 import TeamsPage from './pages/teams';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
-    color: ${(props) => props.theme.colours.text};
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: ${(props) => props.theme.fontSize};
+    color: ${(props) => props.theme.styles.textColour};
+    font-family: 'Open Sans', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: ${(props) => props.theme.styles.fontSize};
     margin: 0;
     padding: 0;
   }

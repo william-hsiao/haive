@@ -35,7 +35,7 @@ const SidebarItem = styled.li`
     border-top: 1px solid ${(props) => props.theme.colours.white};
     background-color: ${(props) => props.theme.colours.white};
     display: block;
-    color: ${(props) => props.theme.colours.text};
+    color: ${(props) => props.theme.styles.textDarkColour};
     text-decoration: none;
     padding: 0.5rem 0.5rem;
     word-wrap: break-word;

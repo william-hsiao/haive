@@ -1,45 +1,44 @@
-export const styledComponentTheme = {
-  colours: {
-    white: '#fff',
-    grey10: '#e6e6e6',
-    grey20: '#cccccc',
-    grey30: '#b3b3b3',
-    grey40: '#999999',
-    grey50: '#808080',
-    grey60: '#666666',
-    grey70: '#4c4c4c',
-    grey80: '#333333',
-    grey90: '#191919',
-    black: '#000',
+const colours = {
+  white: '#FFFFFF',
+  grey10: '#F8F9FA',
+  grey20: '#E9ECEF',
+  grey30: '#DEE2E6',
+  grey40: '#CED4DA',
+  grey50: '#ADB5BD',
+  grey60: '#6C757D',
+  grey70: '#495057',
+  grey80: '#343A40',
+  grey90: '#212529',
+  black: '#000000',
 
-    // e8f0f9
-    primary10: '#d0e0f2',
-    // b9d1ec
-    primary20: '#a1c1e6',
-    // 8ab2e0
-    primary30: '#73a3d9',
-    // 5b93d3
-    primary40: '#4484cd',
-    // 2c74c6
-    primary50: '#1565c0',
-    // 135bad
-    primary60: '#11519a',
-    // 0f4786
-    primary70: '#0d3d73',
-    // 0b3360
-    primary80: '#08284d',
-    // 061e3a
-    primary90: '#041426',
-    // 020a13
+  primary10: '#CAF0F8',
+  primary20: '#ADE8F4',
+  primary30: '#90E0EF',
+  primary40: '#00B4D8',
+  primary50: '#00B4D8',
+  primary60: '#0096C7',
+  primary70: '#0077B6',
+  primary80: '#023E8A',
+  primary90: '#03045E',
 
-    text: '#2e444e',
-    textLight: '#fff',
-    textDark: '#000',
-  },
+  text: '#2e444e',
+  textLight: '#fff',
+  textDark: '#000',
+};
 
+const styles = {
   fontSize: '14px',
 
-  sidebarWidth: '20rem',
+  textColour: colours.grey80,
+  textLightColour: colours.white,
+  textDarkColour: colours.black,
+};
+
+export const styledComponentTheme = {
+  colours,
+  styles,
+
+  sidebarWidth: '6rem',
   headerHeight: '5rem',
   mainPadding: '2rem',
 };

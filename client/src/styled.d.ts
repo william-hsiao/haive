@@ -24,13 +24,15 @@ declare module 'styled-components' {
       primary70: string;
       primary80: string;
       primary90: string;
-
-      text: string;
-      textLight: string;
-      textDark: string;
     };
 
-    fontSize: string;
+    styles: {
+      fontSize: string;
+
+      textColour: string;
+      textLightColour: string;
+      textDarkColour: string;
+    };
 
     sidebarWidth: string;
     headerHeight: string;
