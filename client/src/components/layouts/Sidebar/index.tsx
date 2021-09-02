@@ -5,6 +5,7 @@ import { AccountCircle, Settings } from '@material-ui/icons';
 
 import { routePaths } from '@/routePaths';
 import { useGlobal } from '@/context/GlobalContext';
+import { Logo } from '@/components/CustomIcons';
 import DepartmentMenu, { IDepartmentMenu } from './DepartmentMenu';
 import DepartmentLink from './DepartmentLink';
 
@@ -31,11 +32,6 @@ const Divider = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colours.white};
   margin: 1rem -0.5rem;
 `;
-const Icon = styled.div`
-  height: 4rem;
-  width: 4rem;
-  background-color: ${(props) => props.theme.colours.primary20};
-`;
 const IconWrapper = styled.div`
   height: 4rem;
   width: 4rem;
@@ -48,7 +44,7 @@ const IconWrapper = styled.div`
   }
 
   svg {
-    color: ${(props) => props.theme.colours.white};
+    fill: ${(props) => props.theme.colours.white};
     font-size: 2rem;
   }
 `;
@@ -76,7 +72,9 @@ const Sidebar: FC<ISidebar> = ({ className }) => {
     <Container className={className}>
       <HeaderContainer>
         <Link to={routePaths.root}>
-          <Icon />
+          <IconWrapper>
+            <Logo />
+          </IconWrapper>
         </Link>
       </HeaderContainer>
 
