@@ -28,6 +28,7 @@ const SkillChart: FC<ISkillChart> = ({ skills, members }) => {
         datasets,
       }}
       options={{
+        animation: false,
         scales: {
           r: {
             min: 0,

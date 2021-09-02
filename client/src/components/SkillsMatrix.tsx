@@ -5,7 +5,7 @@ import { MemberSkill, SkillSetLabels } from '@/apiClient';
 
 const Table = styled.div`
   [role='row'] {
-    display: inline-flex;
+    display: flex;
     padding-right: 1rem;
 
     &:first-child {
@@ -52,24 +52,27 @@ const SkillCell = styled(Cell)<ISkillCell>`
   background-color: ${(props) => {
     switch (props.level) {
       case 1:
-        return props.theme.colours.primary10;
+        return props.theme.colours.grey20;
       case 2:
-        return props.theme.colours.primary20;
+        return props.theme.colours.primary10;
       case 3:
-        return props.theme.colours.primary30;
+        return props.theme.colours.primary20;
       case 4:
         return props.theme.colours.primary50;
       case 5:
-        return props.theme.colours.primary60;
+        return props.theme.colours.primary70;
       default:
-        return props.theme.colours.white;
+        return props.theme.colours.grey10;
     }
   }};
   color: ${(props) =>
     props.level > 3 ? props.theme.colours.white : 'inherit'};
 `;
 
-const CellWrapper = styled.div`
+interface ICellWrapper {
+  left?: string;
+}
+const CellWrapper = styled.div<ICellWrapper>`
   padding-bottom: 0.5rem;
 
   &:not(:last-child) {
@@ -79,7 +82,10 @@ const CellWrapper = styled.div`
   /* First Column */
   &:first-child {
     position: sticky;
-    left: ${(props) => props.theme.sidebarWidth};
+    left: ${(props) =>
+      props.left
+        ? `calc(${props.theme.navSidebarWidth} + ${props.left})`
+        : props.theme.navSidebarWidth};
     & > div {
       padding-left: 1rem;
       width: 15rem;
@@ -116,20 +122,22 @@ interface ISkillsMatrix {
   skills: SkillSetLabels;
   memberSkills: MemberSkill[];
   className?: string;
+  left?: string;
 }
 const SkillsMatrix: FC<ISkillsMatrix> = ({
   skills,
   memberSkills,
   className,
+  left,
 }) => {
   return (
     <Table className={className}>
       <div role="row">
-        <CellWrapper>
+        <CellWrapper left={left}>
           <Cell role="th">Member</Cell>
         </CellWrapper>
         {skills.map((skill, index) => (
-          <CellWrapper key={index}>
+          <CellWrapper key={index} left={left}>
             <Cell role="th">{skill}</Cell>
           </CellWrapper>
         ))}
@@ -137,11 +145,11 @@ const SkillsMatrix: FC<ISkillsMatrix> = ({
 
       {memberSkills.map((member, index) => (
         <div role="row" key={index}>
-          <CellWrapper>
+          <CellWrapper left={left}>
             <Cell role="td">{member.user.name}</Cell>
           </CellWrapper>
           {skills.map((skill, idx) => (
-            <CellWrapper key={idx}>
+            <CellWrapper key={idx} left={left}>
               <SkillCell role="td" level={member.skills[skill]}>
                 {member.skills[skill]}
               </SkillCell>

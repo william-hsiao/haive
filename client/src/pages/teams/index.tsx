@@ -1,15 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import {
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch,
-} from 'react-router-dom';
+import { Switch, Route, useParams, useRouteMatch } from 'react-router-dom';
+import { Search } from '@material-ui/icons';
 
 import * as client from '@/apiClient';
 import { RouteParams, routePaths } from '@/routePaths';
+import {
+  Sidebar,
+  SidebarList,
+  SidebarLinkItem,
+} from '@/components/layouts/InnerSidebar';
+import { TextInput } from '@/components/common';
 import Overview from './Overview';
 import View from './View';
 
@@ -17,72 +18,32 @@ const Layout = styled.div`
   display: flex;
 `;
 
-const Sidebar = styled.ul`
+const SearchBox = styled(TextInput)`
   flex-shrink: 0;
-  border-right: 1px solid ${(props) => props.theme.colours.grey20};
-  list-style: none;
-  padding-left: 1rem;
-  padding-right: 0.5rem;
-  width: 15rem;
-  margin-left: -${(props) => props.theme.mainPadding};
-  margin-top: 0;
-`;
-const SidebarItem = styled.li`
-  margin-bottom: 0.1rem;
-
-  a {
-    border-bottom: 1px solid ${(props) => props.theme.colours.white};
-    border-top: 1px solid ${(props) => props.theme.colours.white};
-    background-color: ${(props) => props.theme.colours.white};
-    display: block;
-    color: ${(props) => props.theme.styles.textDarkColour};
-    text-decoration: none;
-    padding: 0.5rem 0.5rem;
-    word-wrap: break-word;
-
-    &:hover {
-      background-color: ${(props) => props.theme.colours.primary10};
-      border-bottom: 1px solid ${(props) => props.theme.colours.primary40};
-      border-top: 1px solid ${(props) => props.theme.colours.primary40};
-    }
-
-    &.active {
-      background-color: ${(props) => props.theme.colours.primary20};
-      border-color: ${(props) => props.theme.colours.primary60};
-    }
-  }
+  border-radius: 0;
+  border: solid ${(props) => props.theme.colours.grey30};
+  border-width: 1px 0 1px 0;
+  width: 100%;
 `;
 
 const Viewport = styled.div`
   padding: 0 2rem;
   flex-grow: 1;
+  margin-left: ${(props) => props.theme.innerSidebarWidth};
 `;
-
-interface ISidebarLink {
-  to: string;
-  children: React.ReactNode;
-  exact?: boolean;
-}
-const SidebarLink: FC<ISidebarLink> = ({ to, children, exact = false }) => {
-  const match = useRouteMatch({
-    path: to,
-    exact,
-  });
-
-  return (
-    <SidebarItem>
-      <Link to={to} className={match ? 'active' : undefined}>
-        {children}
-      </Link>
-    </SidebarItem>
-  );
-};
 
 const TeamsPage: FC = () => {
   const { departmentId } = useParams<RouteParams>();
   const { path, url } = useRouteMatch();
 
   const [teams, setTeams] = useState<client.Team[]>([]);
+  const [filter, setFilter] = useState('');
+  const filteredTeams = useMemo(() => {
+    if (!filter) return teams;
+    return teams.filter((team) =>
+      team.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  }, [teams, filter]);
 
   useEffect(() => {
     if (!departmentId) return;
@@ -94,14 +55,24 @@ const TeamsPage: FC = () => {
   return (
     <Layout>
       <Sidebar>
-        <SidebarLink exact to={url}>
-          Overview
-        </SidebarLink>
-        {teams.map((team, index) => (
-          <SidebarLink to={[url, `/${team._id}`].join('')} key={index}>
-            {team.name}
-          </SidebarLink>
-        ))}
+        <SearchBox
+          value={filter}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setFilter(e.target.value)
+          }
+          placeholder="Filter Teams"
+          icon={<Search />}
+        />
+        <SidebarList>
+          <SidebarLinkItem exact to={url}>
+            Overview
+          </SidebarLinkItem>
+          {filteredTeams.map((team, index) => (
+            <SidebarLinkItem to={[url, `/${team._id}`].join('')} key={index}>
+              {team.name}
+            </SidebarLinkItem>
+          ))}
+        </SidebarList>
       </Sidebar>
 
       <Viewport>

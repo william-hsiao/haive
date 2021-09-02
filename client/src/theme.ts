@@ -1,3 +1,5 @@
+import { createGlobalStyle, css } from 'styled-components';
+
 const colours = {
   white: '#FFFFFF',
   grey10: '#F8F9FA',
@@ -28,17 +30,46 @@ const colours = {
 
 const styles = {
   fontSize: '14px',
+  fontFamily: '"Open Sans", Tahoma, Geneva, Verdana, sans-serif',
+
+  borderRadius: '0.25rem',
 
   textColour: colours.grey80,
   textLightColour: colours.white,
   textDarkColour: colours.black,
 };
 
+const mixins = {
+  outline: css`
+    outline: none;
+
+    &:active,
+    &:focus {
+      box-shadow: 0 0 3px ${() => colours.primary40} inset;
+    }
+  `,
+};
+
 export const styledComponentTheme = {
   colours,
   styles,
+  mixins,
 
-  sidebarWidth: '6rem',
+  navSidebarWidth: '6rem',
+  innerSidebarWidth: '15rem',
   headerHeight: '5rem',
-  mainPadding: '2rem',
 };
+
+export const GlobalStyle = createGlobalStyle`
+  html, body {
+    color: ${(props) => props.theme.styles.textColour};
+    font-family: ${(props) => props.theme.styles.fontFamily};
+    font-size: ${(props) => props.theme.styles.fontSize};
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    ${(props) => props.theme.mixins.outline}
+  }
+`;

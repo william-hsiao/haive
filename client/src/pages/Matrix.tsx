@@ -6,11 +6,6 @@ import * as client from '@/apiClient';
 import { RouteParams } from '@/routePaths';
 import SkillsMatrix from '@/components/SkillsMatrix';
 
-const StyledSkillsMatrix = styled(SkillsMatrix)`
-  margin-left: ${(props) => `-${props.theme.mainPadding}`};
-  margin-right: ${(props) => `-${props.theme.mainPadding}`};
-`;
-
 const MatrixPage: FC = () => {
   const { departmentId } = useParams<RouteParams>();
 
@@ -30,7 +25,7 @@ const MatrixPage: FC = () => {
   return (
     <>
       <h1>Skills Matrix</h1>
-      <StyledSkillsMatrix skills={skillSet} memberSkills={memberSkills} />
+      <SkillsMatrix skills={skillSet} memberSkills={memberSkills} />
     </>
   );
 };

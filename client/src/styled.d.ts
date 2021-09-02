@@ -28,14 +28,21 @@ declare module 'styled-components' {
 
     styles: {
       fontSize: string;
+      fontFamily: string;
+
+      borderRadius: string;
 
       textColour: string;
       textLightColour: string;
       textDarkColour: string;
     };
 
-    sidebarWidth: string;
+    mixins: {
+      outline: FlattenInterpolation<ThemeProps<DefaultTheme>>;
+    };
+
+    navSidebarWidth: string;
+    innerSidebarWidth: string;
     headerHeight: string;
-    mainPadding: string;
   }
 }

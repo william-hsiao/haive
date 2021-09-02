@@ -1,5 +1,5 @@
-import React, { FC, useMemo } from 'react';
-import styled from 'styled-components';
+import React, { FC, useContext, useMemo } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 
 import { useParams } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ interface ITeamViewPage {
 }
 const TeamViewPage: FC<ITeamViewPage> = ({ teams }) => {
   const { teamId } = useParams<RouteParams>();
+  const themeContext = useContext(ThemeContext);
 
   const team = useMemo(
     () => teams.find((team) => team._id === teamId),
@@ -25,7 +26,11 @@ const TeamViewPage: FC<ITeamViewPage> = ({ teams }) => {
         <>
           <h1>{team.name}</h1>
 
-          <SkillMatrix skills={team.skills} memberSkills={team.members} />
+          <SkillMatrix
+            skills={team.skills}
+            memberSkills={team.members}
+            left={themeContext.innerSidebarWidth}
+          />
           <SkillChart
             skills={team.skills}
             members={team.members.map((member) => ({

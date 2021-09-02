@@ -18,7 +18,7 @@ const Container = styled.nav`
   padding: 1rem;
   position: fixed;
   top: 0;
-  width: ${(props) => props.theme.sidebarWidth};
+  width: ${(props) => props.theme.navSidebarWidth};
 `;
 
 const HeaderContainer = styled.div`
