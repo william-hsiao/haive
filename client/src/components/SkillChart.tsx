@@ -9,9 +9,14 @@ interface ISkillChart {
     name: string;
     skills: SkillSet;
   }[];
+  maintainAspectRatio?: boolean;
 }
 
-const SkillChart: FC<ISkillChart> = ({ skills, members }) => {
+const SkillChart: FC<ISkillChart> = ({
+  skills,
+  members,
+  maintainAspectRatio = true,
+}) => {
   const datasets = useMemo(
     () =>
       members.map((member) => ({
@@ -29,6 +34,7 @@ const SkillChart: FC<ISkillChart> = ({ skills, members }) => {
       }}
       options={{
         animation: false,
+        maintainAspectRatio,
         scales: {
           r: {
             min: 0,

@@ -20,7 +20,6 @@ const DepartmentMenuContainer = styled.div<{ y: number }>`
   }
   .menuItem {
     color: ${(props) => props.theme.styles.textColour};
-    text-decoration: none;
     background-color: ${(props) => props.theme.colours.white};
     display: block;
     padding: 1rem;

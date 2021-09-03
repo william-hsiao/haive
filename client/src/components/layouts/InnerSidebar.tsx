@@ -40,7 +40,6 @@ const SidebarLink = styled(Link)`
   background-color: ${(props) => props.theme.colours.grey10};
   display: block;
   color: ${(props) => props.theme.styles.textDarkColour};
-  text-decoration: none;
   padding: 1rem 2rem;
   word-wrap: break-word;
 
