@@ -1,6 +1,7 @@
 import { createGlobalStyle, css } from 'styled-components';
 
 const colours = {
+  transparent: 'transparent',
   white: '#FFFFFF',
   grey10: '#F8F9FA',
   grey20: '#E9ECEF',
@@ -70,6 +71,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
+    text-decoration: none;
     ${(props) => props.theme.mixins.outline}
   }
 `;

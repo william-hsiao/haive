@@ -3,6 +3,7 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colours: {
+      transparent: string;
       white: string;
       grey10: string;
       grey20: string;

@@ -13,7 +13,7 @@ interface IStyledInput {
 const StyledInput = styled.input<IStyledInput>`
   border: 1px solid ${(props) => props.theme.colours.grey50};
   border-radius: ${(props) => props.theme.styles.borderRadius};
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 1rem;
   box-sizing: border-box;
   width: 100%;
 
