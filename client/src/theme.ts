@@ -34,6 +34,7 @@ const styles = {
   fontFamily: '"Open Sans", Tahoma, Geneva, Verdana, sans-serif',
 
   borderRadius: '0.25rem',
+  boxShadow: `0 0 0.6rem ${colours.grey60}`,
 
   textColour: colours.grey80,
   textLightColour: colours.white,

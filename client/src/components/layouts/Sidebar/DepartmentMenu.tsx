@@ -10,7 +10,7 @@ const DepartmentMenuContainer = styled.div<{ y: number }>`
   left: 100%;
   top: ${(props) => `${props.y}px`};
   width: 15rem;
-  box-shadow: 0 0 0.6rem ${(props) => props.theme.colours.grey60};
+  box-shadow: ${(props) => props.theme.styles.boxShadow};
 
   .header {
     background-color: ${(props) => props.theme.colours.primary80};

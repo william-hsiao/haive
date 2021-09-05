@@ -32,6 +32,7 @@ declare module 'styled-components' {
       fontFamily: string;
 
       borderRadius: string;
+      boxShadow: string;
 
       textColour: string;
       textLightColour: string;
